@@ -2,10 +2,7 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div>
-      <header>
-        This is header section.
-      </header>
+    <div >
       <main>
         this is main section.
       </main>
