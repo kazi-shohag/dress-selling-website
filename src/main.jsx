@@ -8,6 +8,8 @@
 import Root from './components/Root.jsx';
 import Home from './components/Home.jsx';
 import All_Category from './components/All_Category.jsx';
+import Add_Dress from './components/Add_Dress.jsx';
+import Update_Dress from './components/Update_Dress.jsx';
 
 const router = createBrowserRouter([
   {
@@ -30,9 +32,17 @@ const router = createBrowserRouter([
        {
         path:"/all-category",
         element:<All_Category></All_Category>
+       },
+       {
+        path:"/update-dress",
+        element:<Update_Dress></Update_Dress>
       }
     ]
   },
+  {
+        path:"/add-dress",
+        element:<Add_Dress></Add_Dress>
+      },
 ]);
 
   createRoot(document.getElementById('root')).render(
