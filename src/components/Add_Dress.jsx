@@ -1,19 +1,39 @@
 import React from "react";
-
+import Swal from "sweetalert2";
 const Add_Dress = () => {
-  const handleAddDress= e =>{
+  const handleAddDress = (e) => {
     e.preventDefault();
-    const form= e. target;
-    const name= form.name.value;
-    const image= form.image.value;
-    const color= form.color.value;
-    const price= form.price.value;
+    const form = e.target;
+    const name = form.name.value;
+    const image = form.image.value;
+    const color = form.color.value;
+    const price = form.price.value;
     const old_price = form.old_price.value;
-    const available= form.available.value;
-    const size= form.size.value;
-    
-  console.log(name, image, color, price, old_price, available, size) 
-  }
+    const available = form.available.value;
+    const size = form.size.value;
+
+    const new_dress = { name, image, color, price, old_price, available, size };
+    // console.log(dress)
+    fetch("http://localhost:5000/dress", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(new_dress),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if(data.insertedId){
+          Swal.fire({
+            title: "success",
+            text: "User Added Successfully",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        }
+      });
+  };
   return (
     <div className="w-11/12 mx-auto bg-lime-100">
       <div className="justify-center text-center">
@@ -50,7 +70,7 @@ const Add_Dress = () => {
                 </div>
                 <input
                   type="text"
-                   name="image"
+                  name="image"
                   placeholder="Image"
                   className="input input-bordered w-full max-w-xs"
                 />
@@ -63,7 +83,7 @@ const Add_Dress = () => {
                 </div>
                 <input
                   type="text"
-                   name="color"
+                  name="color"
                   placeholder="Color"
                   className="input input-bordered w-full max-w-xs"
                 />
@@ -76,7 +96,7 @@ const Add_Dress = () => {
                 </div>
                 <input
                   type="text"
-                   name="price"
+                  name="price"
                   placeholder="price"
                   className="input input-bordered w-full max-w-xs"
                 />
@@ -89,10 +109,9 @@ const Add_Dress = () => {
                 </div>
                 <input
                   type="text"
-                   name="old_price"
+                  name="old_price"
                   placeholder="old price"
                   className="input input-bordered line-through"
-      
                 />
               </label>
             </div>
@@ -104,7 +123,7 @@ const Add_Dress = () => {
                 </div>
                 <input
                   type="text"
-                   name="available"
+                  name="available"
                   placeholder="Available or Sold Out"
                   className="input input-bordered w-full max-w-xs"
                 />
@@ -117,14 +136,16 @@ const Add_Dress = () => {
                 </div>
                 <input
                   type="text"
-                   name="size"
+                  name="size"
                   placeholder="XL / 2XL /3XL .... "
                   className="input input-bordered w-full max-w-xs"
                 />
               </label>
             </div>
           </div>
-          <button className="btn btn-success text-center mt-5 absolute left-1/2 -translate-x-1/2">Add the Dress</button>
+          <button className="btn btn-success text-center mt-5 absolute left-1/2 -translate-x-1/2">
+            Add the Dress
+          </button>
         </form>
       </div>
     </div>

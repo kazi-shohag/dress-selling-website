@@ -31,18 +31,20 @@ const router = createBrowserRouter([
       },
        {
         path:"/all-category",
-        element:<All_Category></All_Category>
-       },
-       {
-        path:"/update-dress",
-        element:<Update_Dress></Update_Dress>
-      }
+        element:<All_Category></All_Category>,
+        loader: ()=>fetch('http://localhost:5000/dress')
+       }
+      
     ]
   },
   {
         path:"/add-dress",
         element:<Add_Dress></Add_Dress>
       },
+       {
+        path:"/update-dress",
+        element:<Update_Dress></Update_Dress>
+      }
 ]);
 
   createRoot(document.getElementById('root')).render(
